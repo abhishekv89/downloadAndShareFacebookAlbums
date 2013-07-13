@@ -12,23 +12,7 @@
         <script src="lib/spin/spin.js"></script>
         <script src="js/jquery.touchSwipe.min.js"></script>
         <script src="js/commonfunctions.js"></script>
-
-        <?php
-
-        require_once 'config/config.php';
-        $base_url = $config['base_url'];
-        session_start();
-        $ses_user = '';
-
-        if (isset($_SESSION['User'])) {
-            //echo "Session is not emty";
-            $ses_user = $_SESSION['User'];
-        }
-
-        if (!empty($ses_user)) {
-            require 'album.php';
-            ?>
-            <script>
+        <script>
                function checkBoxes()
                 {
                     var domObjects = $("#container input:checkbox").get();
@@ -51,7 +35,6 @@
                         $('#myModal').modal();
 
                         $('#myModal').on('hidden', function() {
-
                 }
                 function downloadAll()
                 {
@@ -189,7 +172,6 @@
                     $("#grid").css('visibility', 'hidden');
                     $(".downloadSelected").hide();
                     var setTimer = setTimeout(function() {
-
                         spinner.stop();
                         $("#grid").css('visibility', 'visible');
                         clearTimeout(setTimer);
@@ -197,6 +179,22 @@
                     }, 10000);
                 }
             </script>
+        <?php
+
+        require_once 'config/config.php';
+        $base_url = $config['base_url'];
+        session_start();
+        $ses_user = '';
+
+        if (isset($_SESSION['User'])) {
+            //echo "Session is not emty";
+            $ses_user = $_SESSION['User'];
+        }
+
+        if (!empty($ses_user)) {
+            require 'album.php';
+            ?>
+            
     </head>
         <body>            
             <div id="container" class="row-fluid">
