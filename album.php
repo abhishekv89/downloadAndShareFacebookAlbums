@@ -14,7 +14,9 @@ require 'config/facebook.php';
     }
     $returnVar = $albums->api('/' . $userId . '?fields=id,name,albums.fields(cover_photo,photos,name,count)');
     
-    }catch(Exception $e){
+    }catch(Exception $e)
+    {
+        error_log($e);
         header("location: ErrorPage.php");
     }
     

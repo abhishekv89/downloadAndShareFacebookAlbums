@@ -9,16 +9,12 @@ $albums = new Facebook(array(
     'secret' => $fb['appSecret']
         ));
 $accessToken = $_SESSION['AccessToken'];
-
 if ($accessToken) {
     $albums->setAccessToken($accessToken);
     $userId = $_SESSION['User']['id'];
 }
-
-
 $data = json_decode(stripslashes($_POST['albumId']));
 $folderName = time();
-
 if (file_exists($folderName)) {
     $folderName = time();
     mkdir($folderName);
@@ -26,9 +22,7 @@ if (file_exists($folderName)) {
     $folderName = time();
     mkdir($folderName);
 }
-
 foreach ($data as $d) {
-
     $returnAlbumName = $albums->api(array(
         'method' => 'fql.query',
         'query' => 'SELECT name FROM album where object_id="' . $d . '";',
@@ -61,16 +55,12 @@ foreach ($data as $d) {
 $sourcefolder = "./"; // Default: "./" 
 $zipfilename = "MyAlbums.zip"; // Default: "myarchive.zip"
 //$timeout = 0; // Default: 5000
-
 $dirlist = new RecursiveDirectoryIterator($folderName);
 $filelist = new RecursiveIteratorIterator($dirlist);
-
 $zip = new ZipArchive();
-
 if ($zip->open("$zipfilename", ZipArchive::CREATE) !== TRUE) {
     die("Could not open archive");
 }
-
 foreach ($filelist as $key => $value) {
     $zip->addFile(realpath($key), $key) or die("ERROR: Could not add file: $key");
 }

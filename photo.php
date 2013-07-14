@@ -1,12 +1,11 @@
 <?php
 session_start();
-//echo $_GET['albumId'];
 require 'lib/facebook/facebook.php';
 require 'config/facebook.php';
 $ses_user = '';
 $returnAlbumPhotos = array();
 if (isset($_SESSION['User'])) {
-    //echo "Session is not emty";
+  
     $ses_user = $_SESSION['User'];
 }
 if (empty($ses_user)) {
