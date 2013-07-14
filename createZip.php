@@ -16,7 +16,7 @@ try {
     }
     $returnAlbumPhotos = $albums->api(array(
         'method' => 'fql.query',
-        'query' => 'SELECT src_big FROM photo where album_object_id="' . $_GET['albumId'] . ';',
+        'query' => 'SELECT src_big FROM photo where album_object_id="' . $_GET['albumId'] . '";',
     ));
     foreach ($returnAlbumPhotos as $photo) { {
             $imageArray[] = $photo['src_big'];
